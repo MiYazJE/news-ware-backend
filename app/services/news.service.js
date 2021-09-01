@@ -1,6 +1,6 @@
 const createError = require('../utils/createError')
 const BaseService = require('./base.service')
-
+const getRandomImage = require('../utils/getRandomImage')
 class NewsService extends BaseService {
   constructor({ NewsRepository }) {
     super(NewsRepository)
@@ -14,7 +14,7 @@ class NewsService extends BaseService {
     return this.repository.update(id, changes)
   }
 
-  create({ author, title, description, content }) {
+  async create({ author, title, description, content }) {
     const errors = []
     if (!author) errors.push('Author is required')
     if (!title) errors.push('Title is required')
@@ -27,11 +27,14 @@ class NewsService extends BaseService {
       })
     }
 
+    const urlImage = await getRandomImage()
+
     return this.repository.create({
       author,
       title,
       description,
       content,
+      urlImage,
       isArchived: false,
       date: new Date()
     })

@@ -13,6 +13,7 @@ const NewsSchema = mongoose.Schema({
     type: Date,
     required: true
   },
+  urlImage: String,
   content: {
     type: String,
     required: true
