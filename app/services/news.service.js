@@ -11,7 +11,7 @@ class NewsService extends BaseService {
       throw createError({ message: 'Id parameter is required', status: 400 })
     }
 
-    this.repository.update(id, changes)
+    return this.repository.update(id, changes)
   }
 
   create({ author, title, description, content }) {
@@ -27,7 +27,7 @@ class NewsService extends BaseService {
       })
     }
 
-    this.repository.create({
+    return this.repository.create({
       author,
       title,
       description,

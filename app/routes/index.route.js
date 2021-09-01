@@ -10,7 +10,7 @@ module.exports = ({ NewsRoutes }) => {
 
   router
     .use(express.json())
-    .use(cors())
+    .use(cors({ credentials: true }))
     .use(helmet())
     .use(compression())
     .use(morgan('tiny'))
